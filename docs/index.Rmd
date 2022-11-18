@@ -1,7 +1,7 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Disproportionate Incarceration Demographic Distributions in the American Criminal Justice System"
+author: "David Ta"
+date: '2022-11-17'
 output: html_document
 ---
 
@@ -10,36 +10,39 @@ source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
-## Abstract 
-[TODO: Include a short abstract (about 50 words)]
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
+## Abstract (about 50 words)
 
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
+With respect to the American criminal justice system, there seems to be a shared common sentiment (as my university experience dictates), that there is a great amount of racial inequity within the criminal justice system. Particularly, as many news outlets report from protests and the sort, black individuals receive the short end of the stick and are racially profiled, targeted, and sentenced at a rate disproportionate to their peers. To substantiate or provide basis on these claims, it is necessary to provide tangible, unambiguous data to back up the claims and proposals for systemic change. Furthermore, it is also dire that we know where the inequity might be the worst so that we can understand the factors that lead to the outcomes as well as knowing where to prioritize campaigns for improvement. In this investigation, these issues will described above will be examined given the dataset provided by the Vera institute.     
 
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
+## Section 1  ----
 
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+### Introduction (about 150 words)
 
-## Introduction 
-[TODO]
+#### 1) The social issues related to this data set:
 
-## Data Summary 
-[TODO]
+The social issues related to this data set is racial inequity/injustice with respect to the criminal justice system. Along the themes/terminology used in Data Feminism, we will examine the data set to confirm/determine areas of particular interest with respect to oppression as indicated by disproportionate demographic incarceration outcomes in a primarily Caucasian/cis-male power structure within the criminal justice system in the U.S. 
 
-[TODO ... other sections ... See Canvas for details]
+#### 2) The direct and indirect stakeholders that are impacted by research into this dataset. What are the central values that you need to engage?
 
-_All the very best with your work!_
+The direct stake holders that are impacted by research into this dataset are the legislatures, administration, people in power, or journalists/writers etc. that are met with the results/conclusions that come from this dataset or use the dataset themselves to gain insight. These people are in some position to do further inquiry into the roots/locality of this problem in their respective jurisdictions throughout America. The in-direct stakeholders are the people of minority in the criminal justice system, as the influence of the research might affect their sentencing to account for this disturbing data. Central values that I need to engage with are equity and accountability. Using this data, we know where to look. However, this data only gives us a starting point--perhaps a smoking gun. There is a ton of nuance to any systemic issue such as criminal justice, because it's hard to decipher the right course of action, given the difficulty to judge bias from actual cultural/socioeconomic factors that may or may not actually lead to a certain identity group committing more crimes. 
+
+#### 3) The questions that you answer in your report: 
+
+The questions I will answer in my report are: Where are there disproportionate black/minority incarcerations relative to black/minority make up of the total region population. In Washington, what regions are of concern in this respect? Are there any trends with respect to the level of urbanicity of the region with respect to my central question? 
+
+
+## Section 2  ----
+### Data Summary
+
+
+``` {r echo=FALSE, eval=TRUE, message=FALSE}  
+WA_urbanicity_summary
+``` 
+
+
+The variable that I was the most interested in was the variable that stored the ratio between two population proportions: 1)black inmate population relative to the total inmate population & 2) black population relative to the total population of the county/region. I named the variable 'inmate_prop_to_general_pop' with respect to the dataframe that I rendered pertaining to Washington State. From that 'inmate_prop-to_general_pop' variable, I wrangled the data to find which county in WA had the highest and lowest ratios, which turned out to be Mason County (rural) at 2.609, and Adams, Garfield, Pend Oreille, and Wahkiakum all at 0 (all rural counties excluding Pend Oreille which was small-mid). Furthermore, I wanted to group the 'inmate_prop-to_general_pop' variable by the 'urbanicity' variable, and calculate the mean and medians of each urbanicity level (rural, small/mid, suburban, and urban), to see if any urbanicity condition stood out. Rural turned out to have the highest mean and median of 0.5487241 & 0.3490795 respectively, while Urban turned out to have the lowest mean and median at 0.237517 & 0.2375176 respectively. Though there seemed to be a ton of variability in rural counties, being that rural counties made up a good chuck of the tail as well as the head when I arranged the 'inmate_prop-to_general_pop' variable in ascending order, in the aggregate (via the mean), it does seem as though rural areas are more likely to have problems with racial inequity. 
+
+
+
 
