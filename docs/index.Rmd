@@ -11,13 +11,13 @@ source("../source/analysis.R")
 ```
 
 
-## Abstract (about 50 words)
+## Abstract
 
 With respect to the American criminal justice system, there seems to be a shared common sentiment (as my university experience dictates), that there is a great amount of racial inequity within the criminal justice system. Particularly, as many news outlets report from protests and the sort, black individuals receive the short end of the stick and are racially profiled, targeted, and sentenced at a rate disproportionate to their peers. To substantiate or provide basis on these claims, it is necessary to provide tangible, unambiguous data to back up the claims and proposals for systemic change. Furthermore, it is also dire that we know where the inequity might be the worst so that we can understand the factors that lead to the outcomes as well as knowing where to prioritize campaigns for improvement. In this investigation, these issues will described above will be examined given the dataset provided by the Vera institute.     
 
 ## Section 1  ----
 
-### Introduction (about 150 words)
+### Introduction 
 
 #### 1) The social issues related to this data set:
 

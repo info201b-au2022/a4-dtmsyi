@@ -1,14 +1,14 @@
+
 library(tidyverse)
 library(usdata)
+
 
 
 # The functions might be useful for A4
 source("~/Documents/INFO201/assignments/a4-dtmsyi/source/a4-helpers.R")
 
 ## Test queries ----
-#----------------------------------------------------------------------------#
-# Simple queries for basic testing
-#----------------------------------------------------------------------------#
+
 # Return a simple string
 test_query1 <- function() {
   return ("Hello world")
@@ -21,9 +21,10 @@ test_query2 <- function(num=6) {
 }
 
 
-## Section 2  ---- 
-#----------------------------------------------------------------------------#
-# Your functions and variables might go here ... <todo: update comment>
+
+## Section 2  
+
+
 
 incarceration_df <- read.csv("~/Documents/INFO201/assignments/a4-dtmsyi/incarceration-trends/incarceration_trends.csv")
 WA_2018_incarceration_by_county_df <- incarceration_df %>% filter(year=="2018")  %>% filter(state=="WA")
@@ -46,18 +47,23 @@ WA_county_summary <- WA_2018_incarceration_by_county_analysis %>% group_by(count
 WA_urbanicity_summary <-WA_2018_incarceration_by_county_analysis %>% group_by(urbanicity) %>% summarise(mean_black_inmate_to_total_population = mean(inmate_prop_to_general_pop),
                                                                                median_black_inmate_to_total_population = median(inmate_prop_to_general_pop))
 
+#Summary Paragraph: 
 
+# The variable that I was the most interested in was the variable that stored the ratio between two population proportions: 1)black inmate population relative to the total inmate population
+# & 2) black population relative to the total population of the county/region. I named the variable 'inmate_prop_to_general_pop' with respect to the dataframe that I rendered pertaining to Washington State.
+# From that 'inmate_prop-to_general_pop' variable, I wrangled the data to find which county in WA had the highest and lowest ratios, which turned out to be Mason County (rural) at 2.609, and Adams, Garfield, Pend Oreille, and Wahkiakum all at 0 (all rural counties excluding Pend Oreille which was small-mid).
+# Furthermore, I wanted to group the 'inmate_prop-to_general_pop' variable by the 'urbanicity' variable, and calculate the mean and medians of each urbanicity level (rural, small/mid, suburban, and urban), to see if any urbanicity condition stood out. 
+# Rural turned out to have the highest mean and median of 0.5487241 & 0.3490795 respectively, while Urban turned out to have the lowest mean and median at 0.237517 & 0.2375176 respectively. Though there seemed to be a ton of variability in rural counties,
+# being that rural counties made up a good chuck of the tail as well as the head when I arranged the 'inmate_prop-to_general_pop' variable in ascending order, in the aggregate (via the mean), it does seem as though
+# rural areas are more likely to have problems with racial inequity. 
 
+WA_county_summary
+WA_urbanicity_summary
 
-#----------------------------------------------------------------------------#
+## Section 3  -- 
 
-## Section 3  ---- 
-#----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
 
-# Your functions might go here ... <todo:  update comment>
-#----------------------------------------------------------------------------#
-# This function ... <todo:  update comment>
 get_year_jail_pop <- function() {
   
 incr <- incarceration_df %>% filter(!is.na(total_jail_pop)) %>% group_by(year) %>% summarise(total_jail_pop = sum(total_jail_pop))
@@ -65,9 +71,10 @@ return(incr)
   
   
 }
+
 get_year_jail_pop()
 
-# This function ... <todo:  update comment>
+
 
 plot_jail_pop_for_us <- 
   function()  {
@@ -81,9 +88,8 @@ plot_jail_pop_for_us <-
 plot_jail_pop_for_us()
 
 ## Section 4  ---- 
-#----------------------------------------------------------------------------#
 # Growth of Prison Population by State 
-# Your functions might go here ... <todo:  update comment>
+
 
 get_jail_pop_by_states <- function(states) {
   
@@ -106,13 +112,13 @@ plot_jail_pop_by_states <- function(states) {
 }
 
 plot_jail_pop_by_states(c("WA","CA"))
-# See Canvas
-#----------------------------------------------------------------------------#
+
+
 
 ## Section 5  ---- 
-#----------------------------------------------------------------------------#
+
 # <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
+
 
 grouped_by_counties <- incarceration_df %>% group_by(county_name) %>% drop_na() %>% summarize(max_pop = max(total_pop_15to64), 
                                                                                 max_black_pop = max(black_pop_15to64),
@@ -139,14 +145,7 @@ ggplot(grouped_by_counties, aes(x=(max_black_pop/max_pop), y=(max_black_jail_pop
 # According to my scatterplot I rendered, it turns out that there is an overwhelming amount of counties across the U.S. in which the black inmate population proportion is larger than would be predicted assuming equitable conditions.  
   
 
-# See Canvas
-#----------------------------------------------------------------------------#
-
 ## Section 6  ---- 
-#----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
 
 
 converted_to_full_state <- incarceration_df %>% mutate(abbr2state(incarceration_df$state))
@@ -217,8 +216,10 @@ ggplot(state_shape) +
 # The Key Question I wanted to find an answer to and then visualize was: Which Regions/States have the highest Ratios of Black Inmate/Total Inmate Population relative to Black General/Total General Population? 
 # After rendering the map of the U.S. overlaid with data that I wrangled in prior steps, I found that certain areas that are more rural and known to have a lower black population such as Montana, Colorado, and New Hampshire have the most extreme disparity between black inmate proportion to general black proportion of the total population.   
 # However, I also found that even in areas of higher black population also had a problem with respect to this metric of systemic racial inequity. The whole country is colored in red and black...
-#----------------------------------------------------------------------------#
+#----------------------------------------------------------------#
 
 ## Load data frame ---- 
+
+
 
 
